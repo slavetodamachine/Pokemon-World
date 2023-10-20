@@ -10,28 +10,34 @@ std::string fileName;
 // convert number to string in file open parameter
 void func()
 {
-    std::string myText;
-
-    std::cout << "Which Pokemon file would you like to open (0001 - 1010): ";
-    std::cin >> fileName;
-
-    std::ifstream myReadFile(fileName + ".txt");
-
-
-    // if file does not exist, close program
-    if(!myReadFile)
+    while (1)
     {
-        std::cout << "Pokemon doesn't exist (yet)";
-    }
+        std::string myText;
 
-    // read information from file
-    while (getline (myReadFile, myText))
-    {
-        std::cout << myText;
-    }
+        std::cout << "Which Pokemon file would you like to open (0001 - 1010): ";
+        std::cin >> fileName;
 
-    // good practice to close your files
-    myReadFile.close();
+        if (fileName == "0") { break; }
+
+        std::ifstream myReadFile(fileName + ".txt");
+
+
+        // if file does not exist, close program
+        if(!myReadFile)
+        {
+            std::cout << "Pokemon doesn't exist (yet)";
+        }
+
+        // read information from file
+        while (getline (myReadFile, myText))
+        {
+            std::cout << myText;
+            
+        }
+        // good practice to close your files
+        myReadFile.close();
+        std::cout << "\n";
+    }
 }
 
 
